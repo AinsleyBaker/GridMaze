@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
+
+<!-- Root layout container for the game GUI -->
+<BorderPane fx:id="root" prefHeight="750.0" prefWidth="1200.0" stylesheets="@/app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Fallin.gui.Controller">
+    <padding>
+        <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+    </padding>
+    <center>
+        <VBox fx:id="centerBox" alignment="TOP_CENTER" spacing="20.0" style="-fx-padding: 10;">
+            <!-- Displaying difficulty box -->
+            <VBox fx:id="difficultyBox" alignment="CENTER" spacing="10.0">
+                <Label fx:id="diffText" text="Select a difficulty from 0 to 10"/>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <TextField fx:id="difficultyField" promptText="Enter a number between 0 and 10"/>
+                    <Button text="Start" onAction="#handleStartGame"/>
+                </HBox>
+            </VBox>
+            <!-- GridPane for the game grid -->
+            <GridPane fx:id="gridPane" prefHeight="700.0" prefWidth="700.0"/>
+        </VBox>
+    </center>
+    <left>
+        <VBox fx:id="leftBox" alignment="TOP_CENTER" spacing="20.0" style="-fx-padding: 10;">
+            <!-- Displaying player stats -->
+            <VBox fx:id="statsBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0" spacing="10.0" style="-fx-padding: 10;">
+                <Label fx:id="healthLabel"/>
+                <Label fx:id="goldLabel"/>
+                <Label fx:id="stepsLabel"/>
+                <Label fx:id="stepCounterLabel"/>
+                <Label fx:id="positionLabel"/>
+            </VBox>
+            <!-- Displaying movement controls -->
+            <Pane>
+                <VBox.margin>
+                    <Insets left="10.0"/>
+                </VBox.margin>
+                <Button fx:id="upButton" layoutX="50.0" layoutY="80.0" text="Up" textAlignment="CENTER" onAction="#moveUp"/>
+                <Button fx:id="leftButton" layoutX="-20.0" layoutY="125.0" text="Left" onAction="#moveLeft"/>
+                <Button fx:id="downButton" layoutX="50.0" layoutY="170.0" text="Down" onAction="#moveDown"/>
+                <Button fx:id="rightButton" layoutX="120.0" layoutY="125.0" text="Right" onAction="#moveRight"/>
+            </Pane>
+            <Region VBox.vgrow="ALWAYS"/>
+            <!-- Text area for game messages -->
+            <TextArea fx:id="messageArea" prefHeight="100.0" prefWidth="180.0" wrapText="true" editable="false" styleClass="text-area">
+                <VBox.margin>
+                    <Insets left="10.0"/>
+                </VBox.margin>
+            </TextArea>
+        </VBox>
+    </left>
+    <right>
+        <VBox alignment="TOP_CENTER" spacing="20.0" minHeight="400.0" HBox.hgrow="ALWAYS">
+            <!-- Displaying high scores label -->
+            <Label fx:id="topScoresLabel" wrapText="true" styleClass="top-scores-label" minHeight="280.0" prefHeight="280.0" maxHeight="280.0"/>
+            <!-- Displaying help button -->
+            <Button fx:id="helpButton" text="Help" onAction="#getHelp"/>
+            <Region VBox.vgrow="ALWAYS"/> <VBox alignment="BOTTOM_LEFT" spacing="10.0">
+            <!-- Displaying save and load buttons -->
+            <HBox alignment="BOTTOM_LEFT" spacing="10.0">
+                <Button fx:id="saveButton" text="Save" onAction="#saveGame"/>
+                <Button fx:id="loadButton" text="Load" onAction="#loadGame"/>
+            </HBox>
+            <!-- Displaying quit button -->
+            <HBox alignment="BOTTOM_LEFT" spacing="10.0">
+                <Button fx:id="quitButton" text="Quit" onAction="#quitGame">
+                    <HBox.margin>
+                        <Insets left="55.0"/>
+                    </HBox.margin>
+                </Button>
+            </HBox>
+        </VBox>
+        </VBox>
+    </right>
+</BorderPane>
